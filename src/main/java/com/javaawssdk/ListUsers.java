@@ -26,7 +26,7 @@ public class ListUsers {
             .build();
 
         listAllUsers(iam );
-       System.out.println("\n Done");
+//       System.out.println("\n Done");
 //        iam.close();
     }
 
@@ -50,15 +50,21 @@ public class ListUsers {
 
                     response = iam.listUsers(request);
                 }
+                System.out.println("𝗟𝗶𝘀𝘁 𝗼𝗳 𝗨𝘀𝗲𝗿𝘀");
+                System.out.println("--------------------------------------------------"); 
+                System.out.printf("| %-16s| %-28s  |%n", "user","Last login");
+
 
                 for(User user : response.users()) {
-                    System.out.format("\n Retrieved user  : %s", user.userName());
-                    System.out.format("\n LastPasswordUsed  : %s", user.passwordLastUsed());
+//                    System.out.format("\n Retrieved user  : %s", user.userName());
+//                    System.out.format("\n LastPasswordUsed  : %s", user.passwordLastUsed());
+                      System.out.println("--------------------------------------------------");
+                	  System.out.printf("| %-16s| %-28s  |%n ",user.userName(),user.passwordLastUsed());
 //                    AttachedPermissionsBoundary permissionsBoundary = user.permissionsBoundary();
 //                    if (permissionsBoundary != null)
 //                        System.out.format("\n Permissions boundary details %s", permissionsBoundary.permissionsBoundaryTypeAsString());
                 }
-
+                System.out.println("--------------------------------------------------");
                 if(!response.isTruncated()) {
                     done = true;
                 } else {

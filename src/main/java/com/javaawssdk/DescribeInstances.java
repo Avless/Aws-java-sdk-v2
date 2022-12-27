@@ -42,13 +42,27 @@ public class DescribeInstances {
          do {
              DescribeInstancesRequest request = DescribeInstancesRequest.builder().build();
              DescribeInstancesResponse response = ec2.describeInstances(request);
+             System.out.println("\n 𝘿𝙚𝙨𝙘𝙧𝙞𝙗𝙚 𝙄𝙣𝙨𝙩𝙖𝙣𝙘𝙚");
+             System.out.println("------------------------------------------------------------------------------------------------------------------"); 
+             System.out.printf("| %-20s| %-28s  | %-16s| %-16s| %-18s|%n", "Instance Id","Image id","Instance type","Instance type","monitoring information");
+             System.out.println("------------------------------------------------------------------------------------------------------------------");
              for (Reservation reservation : response.reservations()) {
+            	 
                  for (Instance instance : reservation.instances()) {
-                     System.out.println("Instance Id is : " + instance.instanceId());
-                     System.out.println("Image id is : "+ instance.imageId());
-                     System.out.println("Instance type is : "+ instance.instanceType());
-                     System.out.println("Instance state name is : "+ instance.state().name());
-                     System.out.println("monitoring information is : "+ instance.monitoring().state());
+                     System.out.printf("| %-20s| %-28s  | %-16s| %-16s| %-22s|%n", instance.instanceId(),instance.imageId(), instance.instanceType(),instance.state().name(),instance.monitoring().state());
+                     System.out.println("------------------------------------------------------------------------------------------------------------------");
+
+//
+//                     System.out.println("Instance Id is : " + instance.instanceId());
+//                     System.out.println("--------------------------------------------------");                
+//                     System.out.println("Image id is : "+ instance.imageId());
+//                     System.out.println("--------------------------------------------------");                
+//                     System.out.println("Instance type is : "+ instance.instanceType());
+//                     System.out.println("--------------------------------------------------");                
+//                     System.out.println("Instance state name is : "+ instance.state().name());
+//                     System.out.println("--------------------------------------------------");                
+//                     System.out.println("monitoring information is : "+ instance.monitoring().state());
+//                     System.out.println("--------------------------------------------------");                
                  }
              }
 //             nextToken = response.nextToken();

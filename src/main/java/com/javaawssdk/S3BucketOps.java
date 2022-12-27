@@ -40,10 +40,14 @@ public class S3BucketOps {
             .build();
 
         // snippet-end:[s3.java2.s3_bucket_ops.region]
-        String bucket = "bucket" ; //(ystem.currentTimeMillis());
-//        System.out.println(bucket);
+        String bucket = "List OF Bucket" ; //(ystem.currentTimeMillis());
+       
 //        createBucket(s3, bucket);
+        System.out.println("---------------------");
+        System.out.println(bucket);
+        System.out.println("---------------------");
         performOperations(s3, bucket) ;
+        System.out.println("---------------------");
         }
 
     // snippet-start:[s3.java2.s3_bucket_ops.create_bucket]
@@ -77,9 +81,11 @@ public class S3BucketOps {
 
         // snippet-start:[s3.java2.s3_bucket_ops.list_bucket]
         // List buckets
+    	
         ListBucketsRequest listBucketsRequest = ListBucketsRequest.builder().build();
         ListBucketsResponse listBucketsResponse = s3.listBuckets(listBucketsRequest);
         listBucketsResponse.buckets().stream().forEach(x -> System.out.println(x.name()));
+        
         // snippet-end:[s3.java2.s3_bucket_ops.list_bucket]
 
         // Delete empty bucket.
