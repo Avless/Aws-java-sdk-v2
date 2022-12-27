@@ -8,6 +8,7 @@ public class JavaAwsSdkApplication  {
 		
 		ListUsers.main(args);
 		DescribeInstances.main(args);
+		S3BucketOps.main(args);
 		
 			
 	

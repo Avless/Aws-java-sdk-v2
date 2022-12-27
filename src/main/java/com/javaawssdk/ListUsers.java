@@ -1,6 +1,6 @@
 package com.javaawssdk;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
-import software.amazon.awssdk.services.iam.model.AttachedPermissionsBoundary;
+//import software.amazon.awssdk.services.iam.model.AttachedPermissionsBoundary;
 import software.amazon.awssdk.services.iam.model.IamException;
 import software.amazon.awssdk.services.iam.model.ListUsersRequest;
 import software.amazon.awssdk.services.iam.model.ListUsersResponse;
@@ -26,8 +26,8 @@ public class ListUsers {
             .build();
 
         listAllUsers(iam );
-        System.out.println("Done");
-        iam.close();
+       System.out.println("\n Done");
+//        iam.close();
     }
 
     // snippet-start:[iam.java2.list_users.main]
@@ -45,7 +45,7 @@ public class ListUsers {
                     response = iam.listUsers(request);
                 } else {
                     ListUsersRequest request = ListUsersRequest.builder()
-                        .marker(newMarker)
+//                        .marker(newMarker)
                         .build();
 
                     response = iam.listUsers(request);
@@ -54,21 +54,22 @@ public class ListUsers {
                 for(User user : response.users()) {
                     System.out.format("\n Retrieved user  : %s", user.userName());
                     System.out.format("\n LastPasswordUsed  : %s", user.passwordLastUsed());
-                    AttachedPermissionsBoundary permissionsBoundary = user.permissionsBoundary();
-                    if (permissionsBoundary != null)
-                        System.out.format("\n Permissions boundary details %s", permissionsBoundary.permissionsBoundaryTypeAsString());
+//                    AttachedPermissionsBoundary permissionsBoundary = user.permissionsBoundary();
+//                    if (permissionsBoundary != null)
+//                        System.out.format("\n Permissions boundary details %s", permissionsBoundary.permissionsBoundaryTypeAsString());
                 }
 
                 if(!response.isTruncated()) {
                     done = true;
                 } else {
-                    newMarker = response.marker();
+//                    newMarker = response.marker();
                 }
             }
 
-        } catch (IamException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
+        }
+        catch (IamException e) {
+//            System.err.println(e.awsErrorDetails().errorMessage());
+//            System.exit(1);
         }
     }
     // snippet-end:[iam.java2.list_users.main]

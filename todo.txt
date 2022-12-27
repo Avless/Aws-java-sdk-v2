@@ -1,0 +1,9 @@
+security groups
+unwanted lines remove
+format the output
+plain jar
+last login and last password change
+instance with cpu utlization for 1 month
+left side clean
+make it as jar file
+release mode 

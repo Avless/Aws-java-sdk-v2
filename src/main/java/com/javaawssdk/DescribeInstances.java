@@ -7,14 +7,9 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ec2.Ec2Client;
 import software.amazon.awssdk.services.ec2.model.DescribeInstancesRequest;
 import software.amazon.awssdk.services.ec2.model.DescribeInstancesResponse;
+import software.amazon.awssdk.services.ec2.model.Ec2Exception;
 import software.amazon.awssdk.services.ec2.model.Instance;
 import software.amazon.awssdk.services.ec2.model.Reservation;
-import software.amazon.awssdk.services.ec2.model.Ec2Exception;
-
-import java.util.logging.Logger;
-
-import org.slf4j.LoggerFactory;
-//snippet-end:[ec2.java2.describe_instances.import]
 
 /**
 * Before running this Java V2 code example, set up your development environment, including your credentials.
@@ -26,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class DescribeInstances {
 
  // private static Global logger;
- private Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
+// private Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
  public static void main(String[] args) {
 
      Region region = Region.US_EAST_1;
@@ -45,7 +40,7 @@ public class DescribeInstances {
      String nextToken = null;
      try {
          do {
-             DescribeInstancesRequest request = DescribeInstancesRequest.builder().maxResults(6).nextToken(nextToken).build();
+             DescribeInstancesRequest request = DescribeInstancesRequest.builder().build();
              DescribeInstancesResponse response = ec2.describeInstances(request);
              for (Reservation reservation : response.reservations()) {
                  for (Instance instance : reservation.instances()) {
@@ -56,12 +51,13 @@ public class DescribeInstances {
                      System.out.println("monitoring information is : "+ instance.monitoring().state());
                  }
              }
-             nextToken = response.nextToken();
+//             nextToken = response.nextToken();
          } while (nextToken != null);
 
-     } catch (Ec2Exception e) {
-         System.err.println(e.awsErrorDetails().errorCode());
-         System.exit(1);
+     } 
+     catch (Ec2Exception e) {
+//         System.err.println(e.awsErrorDetails().errorCode());
+//         System.exit(1);
      }
  }
  // snippet-end:[ec2.java2.describe_instances.main]
